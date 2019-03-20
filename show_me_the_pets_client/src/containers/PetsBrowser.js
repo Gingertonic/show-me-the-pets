@@ -52,8 +52,8 @@ export default class PetsBrowser extends Component {
         <Nav fetchAnimalType={this.filterPetsByType}/>
         <Search pets={this.state.pets} fetchResults={this.filterByMultiQuery}/>
         <table>
-          <tr><th>Name</th><th>Type</th><th>Color</th><th>Breed</th><th>Address</th></tr>
-          {renderPets}
+          <thead><tr><th>Name</th><th>Type</th><th>Color</th><th>Breed</th><th>Address</th></tr></thead>
+          <tbody>{renderPets}</tbody>
         </table>
       </div>
     )
