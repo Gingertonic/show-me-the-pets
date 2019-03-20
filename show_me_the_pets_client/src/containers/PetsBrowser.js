@@ -62,7 +62,6 @@ export default class PetsBrowser extends Component {
     }
   }
 
-
   render = () => {
     return (
       <div id="browser">

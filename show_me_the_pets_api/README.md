@@ -1,24 +1,10 @@
-# README
+# Show Me The Pets (Frontend React Client)
+![](http://forthebadge.com/images/badges/made-with-ruby.svg)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Made with Ruby on Rails
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To start the backend server run:
+- `cd show_me_the_pets_api`
+- `bundle install`
+- `rake db:seed` to add the pets to the database!
+- `rails s` to start up the back-end server on port 3002
