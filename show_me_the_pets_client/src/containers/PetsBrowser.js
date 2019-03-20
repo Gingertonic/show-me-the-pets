@@ -15,11 +15,6 @@ export default class PetsBrowser extends Component {
     }
   }
 
-  componentDidMount = () => {
-    // this.fetchAnimalType('dogs')
-  }
-
-
   fetchAnimalType = animalType => {
       fetch(`http://localhost:3000/pets/${animalType}`)
         .then(resp => resp.json())
@@ -41,12 +36,21 @@ export default class PetsBrowser extends Component {
     return view
   }
 
+  fetchSearchResults = (queries) => {
+    fetch(`http://localhost:3000/pets/search/`, {
+      method: "post",
+      body: JSON.stringify(queries),
+      headers: {'Content-Type':'application/json'}
+    }).then(console.log('fetch search results'))
+  }
+
+
   render = () => {
     const renderPets = this.state.pets.map(pet => <PetRow pet={pet}/>)
     return (
       <div id="browser">
         <Nav switchView={this.switchView} fetchAnimalType={this.fetchAnimalType}/>
-        <Search switchView={this.switchView}/>
+        <Search switchView={this.switchView} fetchResults={this.fetchSearchResults}/>
         {this.routeInnerView()}
         <table>
           <tr><th>Name</th><th>Type</th><th>Color</th><th>Breed</th></tr>
