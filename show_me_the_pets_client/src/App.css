@@ -56,3 +56,7 @@ th {
   cursor: pointer;
   color: darkorange;
 }
+
+.pet-pic {
+  height: 30vh;
+}
