@@ -9,6 +9,15 @@ export default class Search extends Component {
     locationInput: ""
   }
 
+  // getSuggestions = value => {
+  //   const inputValue = value.trim().toLowerCase();
+  //   const inputLength = inputValue.length;
+  //
+  //   return inputLength === 0 ? [] : this.props.pets.filter(pet =>
+  //     pet.name.toLowerCase().slice(0, inputLength) === inputValue
+  //   );
+  // };
+
   handleInputChange = e => {
     const key = e.target.id
     this.setState({[key]: e.target.value})

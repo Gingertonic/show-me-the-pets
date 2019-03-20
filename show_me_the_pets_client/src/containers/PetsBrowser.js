@@ -11,14 +11,25 @@ export default class PetsBrowser extends Component {
     super(props)
     this.state = {
       pets: [],
-      view: "Search"
+      view: "Search",
+      results: []
     }
   }
 
-  fetchAnimalType = animalType => {
-      fetch(`http://localhost:3000/pets/${animalType}`)
+  componentDidMount = () => {
+    this.fetchPets()
+  }
+
+  fetchPets = animalType => {
+      fetch(`http://localhost:3000/pets/`)
         .then(resp => resp.json())
         .then(pets => this.setState({ pets }))
+  }
+
+  filterPetsByType = animalType => {
+    const results = this.state.pets.filter(p => p.animal_type === animalType)
+    debugger
+    this.setState({ results })
   }
 
   switchView = view => {
@@ -46,11 +57,11 @@ export default class PetsBrowser extends Component {
 
 
   render = () => {
-    const renderPets = this.state.pets.map(pet => <PetRow pet={pet}/>)
+    const renderPets = this.state.results.map(pet => <PetRow pet={pet}/>)
     return (
       <div id="browser">
-        <Nav switchView={this.switchView} fetchAnimalType={this.fetchAnimalType}/>
-        <Search switchView={this.switchView} fetchResults={this.fetchSearchResults}/>
+        <Nav switchView={this.switchView} fetchAnimalType={this.filterPetsByType}/>
+        <Search switchView={this.switchView} pets={this.state.pets} fetchResults={this.filterPetsByType}/>
         {this.routeInnerView()}
         <table>
           <tr><th>Name</th><th>Type</th><th>Color</th><th>Breed</th></tr>
