@@ -27,10 +27,20 @@ export default class PetsBrowser extends Component {
   }
 
   filterPetsByType = animalType => {
-    const results = this.state.pets.filter(p => p.animal_type === animalType)
-    debugger
+    const results = this.state.pets.filter(p => p.animal_type.match(new RegExp(animalType)))
     this.setState({ results })
   }
+
+  filterByMultiQuery = queries => {
+    const results = this.state.pets.filter(p =>
+      p.name.match(new RegExp(queries.name)) &&
+      p.color.match(new RegExp(queries.color)) &&
+      p.breed.match(new RegExp(queries.breed)) &&
+      p.address.match(new RegExp(queries.address))
+    )
+    this.setState({ results })
+  }
+
 
   switchView = view => {
     this.setState({ view })
@@ -47,13 +57,13 @@ export default class PetsBrowser extends Component {
     return view
   }
 
-  fetchSearchResults = (queries) => {
-    fetch(`http://localhost:3000/pets/search/`, {
-      method: "post",
-      body: JSON.stringify(queries),
-      headers: {'Content-Type':'application/json'}
-    }).then(console.log('fetch search results'))
-  }
+  // fetchSearchResults = (queries) => {
+  //   fetch(`http://localhost:3000/pets/search/`, {
+  //     method: "post",
+  //     body: JSON.stringify(queries),
+  //     headers: {'Content-Type':'application/json'}
+  //   }).then(console.log('fetch search results'))
+  // }
 
 
   render = () => {
@@ -61,10 +71,10 @@ export default class PetsBrowser extends Component {
     return (
       <div id="browser">
         <Nav switchView={this.switchView} fetchAnimalType={this.filterPetsByType}/>
-        <Search switchView={this.switchView} pets={this.state.pets} fetchResults={this.filterPetsByType}/>
+        <Search switchView={this.switchView} pets={this.state.pets} fetchResults={this.filterByMultiQuery}/>
         {this.routeInnerView()}
         <table>
-          <tr><th>Name</th><th>Type</th><th>Color</th><th>Breed</th></tr>
+          <tr><th>Name</th><th>Type</th><th>Color</th><th>Breed</th><th>Address</th></tr>
           {renderPets}
         </table>
       </div>

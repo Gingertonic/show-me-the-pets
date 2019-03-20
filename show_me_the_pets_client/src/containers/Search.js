@@ -6,7 +6,7 @@ export default class Search extends Component {
     nameInput: "",
     colorInput: "",
     breedInput: "",
-    locationInput: ""
+    addressInput: ""
   }
 
   // getSuggestions = value => {
@@ -21,6 +21,7 @@ export default class Search extends Component {
   handleInputChange = e => {
     const key = e.target.id
     this.setState({[key]: e.target.value})
+    this.searchBy()
   }
 
   searchBy = () => {
@@ -28,7 +29,7 @@ export default class Search extends Component {
       name: this.state.nameInput,
       color: this.state.colorInput,
       breed: this.state.breedInput,
-      location: this.state.locationInput
+      address: this.state.addressInput
     }
     this.props.fetchResults(queries)
   }
@@ -40,7 +41,7 @@ export default class Search extends Component {
       <input type="text" id="nameInput" placeholder="Name" onChange={this.handleInputChange} value={this.state.nameInput}/>
         <input type="text" id="colorInput" placeholder="Color" onChange={this.handleInputChange} value={this.state.colorInput}/>
         <input type="text" id="breedInput" placeholder="Breed" onChange={this.handleInputChange} value={this.state.breedInput} />
-        <input type="text" id="locationInput" placeholder="Location" onChange={this.handleInputChange} value={this.state.locationInput} />
+        <input type="text" id="addressInput" placeholder="Address" onChange={this.handleInputChange} value={this.state.addressInput} />
         <button onClick={this.searchBy}>Search</button>
       </div>
     )
