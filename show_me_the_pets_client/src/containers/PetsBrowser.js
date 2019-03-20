@@ -30,10 +30,10 @@ export default class PetsBrowser extends Component {
 
   filterByMultiQuery = queries => {
     const results = this.state.pets.filter(p =>
-      p.name.match(new RegExp(queries.name)) &&
-      p.color.match(new RegExp(queries.color)) &&
-      p.breed.match(new RegExp(queries.breed)) &&
-      p.address.match(new RegExp(queries.address))
+      p.name.match(new RegExp(queries.name, "i")) &&
+      p.color.match(new RegExp(queries.color, "i")) &&
+      p.breed.match(new RegExp(queries.breed, "i")) &&
+      p.address.match(new RegExp(queries.address, "i"))
     )
     this.setState({ results })
   }
