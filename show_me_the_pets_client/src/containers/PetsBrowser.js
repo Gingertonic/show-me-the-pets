@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Nav from '../components/Nav'
+import PetRow from '../components/PetRow'
 import Location from '../components/Location'
 import Breed from '../components/Breed'
 import SearchResults from '../components/SearchResults'
@@ -22,7 +23,7 @@ export default class PetsBrowser extends Component {
   fetchAnimalType = animalType => {
       fetch(`http://localhost:3000/pets/${animalType}`)
         .then(resp => resp.json())
-        .then(dogs => this.setState({ dogs }))
+        .then(pets => this.setState({ pets }))
   }
 
   switchView = view => {
@@ -41,13 +42,16 @@ export default class PetsBrowser extends Component {
   }
 
   render = () => {
-    const renderPets = this.state.pets.forEach(pet => {return <li>{pet.name}</li>})
+    const renderPets = this.state.pets.map(pet => <PetRow pet={pet}/>)
     return (
       <div id="browser">
         <Nav switchView={this.switchView} fetchDogs={this.fetchDogs} fetchCats={this.fetchDogs}/>
         <Search switchView={this.switchView}/>
         {this.routeInnerView()}
-        <ul>{renderPets}</ul>
+        <table>
+          <tr><th>Name</th><th>Type</th><th>Color</th><th>Breed</th></tr>
+          {renderPets}
+        </table>
       </div>
     )
   }
