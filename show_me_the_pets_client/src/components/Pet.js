@@ -12,11 +12,11 @@ export default class Pet extends Component {
   }
 
   componentDidMount = () => {
-    this.getBreedCode()
+    this.getBreedCode(this.props.pet.breed.substring(0, 2))
   }
 
-  getBreedCode = () => {
-    fetch('https://api.thecatapi.com/v1/breeds/search?q=sib', {
+  getBreedCode = breedSubString => {
+    fetch(`https://api.thecatapi.com/v1/breeds/search?q=${breedSubString}`, {
       headers: {"x-api-key": "36ff3545-500e-4d64-bcf7-4003b02f18df"}
     })
       .then(resp => resp.json())
