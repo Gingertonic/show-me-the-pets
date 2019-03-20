@@ -38,6 +38,7 @@ export default class Search extends Component {
       addressInput: "",
       genderInput: ""
     })
+    this.props.fetchResults(this.state)
   }
 
   render = () => {
@@ -48,7 +49,8 @@ export default class Search extends Component {
           <input type="text" id="colorInput" placeholder="Color" onChange={this.handleInputChange} value={this.state.colorInput}/>
           <input type="text" id="breedInput" placeholder="Breed" onChange={this.handleInputChange} value={this.state.breedInput} />
           <select id="genderInput" onChange={this.handleInputChange}>
-           <option value="" selected disabled hidden>Gender</option>
+           <option value="" defaultValue disabled hidden>Gender</option>
+           <option value="">Any</option>
            <option value="M">Male</option>
            <option value="F">Female</option>
            <option value="N">Neutered</option>

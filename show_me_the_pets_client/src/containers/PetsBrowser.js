@@ -30,7 +30,7 @@ export default class PetsBrowser extends Component {
   }
 
   filterByMultiQuery = async queries => {
-    const filterTo = (this.state.results.length === 0) ? await this.filterPetsByType("") : null
+    await this.populateResults()
     const results = this.state.results.filter(p =>
       p.name.match(new RegExp(`^${queries.name}`, "i")) &&
       p.color.match(new RegExp(queries.color, "i")) &&
@@ -39,6 +39,10 @@ export default class PetsBrowser extends Component {
       p.gender.match(new RegExp(queries.gender))
     )
     this.setState({ results })
+  }
+
+  populateResults = () => {
+    return (this.state.results.length === 0) ? this.filterPetsByType("") : null
   }
 
   showPet = petId => {
@@ -52,8 +56,9 @@ export default class PetsBrowser extends Component {
 
   renderView = () =>{
     switch(this.state.view){
-      case "search": return <SearchResults results={this.state.results} showPet={this.showPet}/>; break;
+      case "search": return <SearchResults results={this.state.results} showPet={this.showPet}/>;
       case "showPet": return <Pet pet={this.state.selectedPet} switchView={this.switchView}/>
+      default: return <SearchResults results={this.state.results} showPet={this.showPet}/>
     }
   }
 
