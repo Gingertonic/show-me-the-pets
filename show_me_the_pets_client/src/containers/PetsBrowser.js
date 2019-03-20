@@ -14,14 +14,15 @@ export default class PetsBrowser extends Component {
     }
   }
 
-  fetchDogs = () => {
-    fetch('http://localhost:3000/pets/dogs')
-      .then(pets => this.setState({pets}))
+  componentDidMount = () => {
+    this.fetchAnimalType('dogs')
   }
 
-  fetchCats = () => {
-    fetch('http://localhost:3000/pets/cats')
-      .then(pets => this.setState({pets}))
+
+  fetchAnimalType = animalType => {
+      fetch(`http://localhost:3000/pets/${animalType}`)
+        .then(resp => resp.json())
+        .then(dogs => this.setState({ dogs }))
   }
 
   switchView = view => {
