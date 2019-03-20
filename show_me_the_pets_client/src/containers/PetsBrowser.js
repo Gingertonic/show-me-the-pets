@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Nav from '../components/Nav'
 import PetRow from '../components/PetRow'
-import Location from '../components/Location'
-import Breed from '../components/Breed'
-import SearchResults from '../components/SearchResults'
 import Search from '../containers/Search'
 
 export default class PetsBrowser extends Component {
@@ -46,25 +43,14 @@ export default class PetsBrowser extends Component {
     this.setState({ view })
   }
 
-  routeInnerView = () => {
-    let view;
-    switch(this.state.view){
-      case "SearchResults": view = <SearchResults />; break;
-      case "Breed": view = <Breed />; break;
-      case "Location": view = <Location />; break;
-      default: return null;
-    }
-    return view
-  }
 
 
   render = () => {
     const renderPets = this.state.results.map(pet => <PetRow pet={pet}/>)
     return (
       <div id="browser">
-        <Nav switchView={this.switchView} fetchAnimalType={this.filterPetsByType}/>
-        <Search switchView={this.switchView} pets={this.state.pets} fetchResults={this.filterByMultiQuery}/>
-        {this.routeInnerView()}
+        <Nav fetchAnimalType={this.filterPetsByType}/>
+        <Search pets={this.state.pets} fetchResults={this.filterByMultiQuery}/>
         <table>
           <tr><th>Name</th><th>Type</th><th>Color</th><th>Breed</th><th>Address</th></tr>
           {renderPets}
