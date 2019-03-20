@@ -39,7 +39,16 @@ export default class Pet extends Component {
   }
 
   renderImage = () => {
-    return (this.state.image) ? <img className="pet-pic" src={this.state.image} alt="pet pic"/> : null;
+    return (this.state.image) ? this.imageWithDisclaimer() : null;
+  }
+
+  imageWithDisclaimer = () => {
+    return (
+      <div id="img">
+        <img className="pet-pic" src={this.state.image} alt="pet pic"/><br/>
+        <code>Not an accurate representation!</code>
+      </div>
+    )
   }
 
   render = () => {

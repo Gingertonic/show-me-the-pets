@@ -25,6 +25,11 @@ table {
   cursor: pointer;
 }
 
+.nav-link:hover {
+  color: orange;
+  font-weight: bold;
+}
+
 #search {
   margin-bottom: 2vw;
 }
