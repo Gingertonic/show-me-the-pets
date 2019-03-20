@@ -21,7 +21,7 @@ export default class PetsBrowser extends Component {
   }
 
   fetchPets = animalType => {
-      fetch(`http://localhost:3000/pets/`)
+      fetch(`http://localhost:3002/pets/`)
         .then(resp => resp.json())
         .then(pets => this.setState({ pets }))
   }
@@ -56,14 +56,6 @@ export default class PetsBrowser extends Component {
     }
     return view
   }
-
-  // fetchSearchResults = (queries) => {
-  //   fetch(`http://localhost:3000/pets/search/`, {
-  //     method: "post",
-  //     body: JSON.stringify(queries),
-  //     headers: {'Content-Type':'application/json'}
-  //   }).then(console.log('fetch search results'))
-  // }
 
 
   render = () => {
