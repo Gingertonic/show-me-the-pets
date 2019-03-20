@@ -2,7 +2,7 @@ import React from 'react';
 import PetRow from './PetRow'
 
 const SearchResults = props => {
-  const renderPets = props.results.map(pet => <PetRow pet={pet}/>)
+  const renderPets = props.results.map(pet => <PetRow pet={pet} showPet={props.showPet}/>)
   return (
     <table>
       <thead>

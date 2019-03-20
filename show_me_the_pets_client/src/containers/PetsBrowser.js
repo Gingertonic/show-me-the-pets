@@ -9,7 +9,7 @@ export default class PetsBrowser extends Component {
     super(props)
     this.state = {
       pets: [],
-      view: "Search",
+      view: "search",
       results: []
     }
   }
@@ -42,14 +42,20 @@ export default class PetsBrowser extends Component {
   }
 
   showPet = petId => {
-    const pet = this.state.pets.find(p => p.id === petId)
-    this.switchView('showPet')
+    const pet = this.state.pets.find(p => p.animal_id === petId)
+    this.setState({selectedPet: pet, view: 'showPet'})
   }
 
   switchView = view => {
     this.setState({ view })
   }
 
+  renderView = () =>{
+    switch(this.state.view){
+      case "search": return <SearchResults results={this.state.results} showPet={this.showPet}/>; break;
+      case "showPet": return <Pet pet={this.state.selectedPet} switchView={this.switchView}/>
+    }
+  }
 
 
   render = () => {
@@ -57,7 +63,7 @@ export default class PetsBrowser extends Component {
       <div id="browser">
         <Nav fetchAnimalType={this.filterPetsByType}/>
         <Search pets={this.state.pets} fetchResults={this.filterByMultiQuery}/>
-        <SearchResults results={this.state.results} />
+        {this.renderView()}
       </div>
     )
   }

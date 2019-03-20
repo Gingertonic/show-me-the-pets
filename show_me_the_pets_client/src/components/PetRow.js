@@ -1,9 +1,9 @@
 import React from 'react'
 
-const PetRow = ({ pet }) => {
+const PetRow = ({ pet, showPet }) => {
   return(
     <tr>
-      <td class="select-pet" onClick={() => this.showPet(pet.id)}>{pet.name}</td>
+      <td className="select-pet" onClick={() => showPet(pet.animal_id)}>{pet.name}</td>
       <td>{pet.animal_type}</td>
       <td>{pet.color}</td>
       <td>{pet.breed}</td>

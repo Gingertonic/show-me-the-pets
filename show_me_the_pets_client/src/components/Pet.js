@@ -1,15 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const Pet = ({ pet }) => {
-  return(
-    <tr>
-      <td class="select-pet" onClick={() => this.showPet(pet.id)}>{pet.name}</td>
-      <td>{pet.animal_type}</td>
-      <td>{pet.color}</td>
-      <td>{pet.breed}</td>
-      <td>{pet.gender[0]}</td>
-      <td>{pet.address}</td>
-    </tr>
-  )
+export default class Pet extends Component {
+  render = () => {
+    return(
+      <div id="show-pet">
+        <h1>{this.props.pet.name}</h1>
+        <div className="nav-link" onClick={() => this.props.switchView('search')}>Back to Results</div>
+      </div>
+    )
+  }
 }
-export default Pet
