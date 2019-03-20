@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Nav from '../components/Nav'
-import PetRow from '../components/PetRow'
+import Pet from '../components/Pet'
+import SearchResults from '../components/SearchResults'
 import Search from '../containers/Search'
 
 export default class PetsBrowser extends Component {
@@ -28,8 +29,9 @@ export default class PetsBrowser extends Component {
     this.setState({ results })
   }
 
-  filterByMultiQuery = queries => {
-    const results = this.state.pets.filter(p =>
+  filterByMultiQuery = async queries => {
+    const filterTo = (this.state.results.length === 0) ? await this.filterPetsByType("") : null
+    const results = this.state.results.filter(p =>
       p.name.match(new RegExp(`^${queries.name}`, "i")) &&
       p.color.match(new RegExp(queries.color, "i")) &&
       p.breed.match(new RegExp(queries.breed, "i")) &&
@@ -39,6 +41,10 @@ export default class PetsBrowser extends Component {
     this.setState({ results })
   }
 
+  showPet = petId => {
+    const pet = this.state.pets.find(p => p.id === petId)
+    this.switchView('showPet')
+  }
 
   switchView = view => {
     this.setState({ view })
@@ -47,24 +53,11 @@ export default class PetsBrowser extends Component {
 
 
   render = () => {
-    const renderPets = this.state.results.map(pet => <PetRow pet={pet}/>)
     return (
       <div id="browser">
         <Nav fetchAnimalType={this.filterPetsByType}/>
         <Search pets={this.state.pets} fetchResults={this.filterByMultiQuery}/>
-        <table>
-          <thead>
-            <tr>
-              <th className="th-name">Name</th>
-              <th className="th-type">Type</th>
-              <th className="th-color">Color</th>
-              <th className="th-breed">Breed</th>
-              <th className="th-gender">Gender</th>
-              <th className="th-address">Address</th>
-            </tr>
-          </thead>
-          <tbody>{renderPets}</tbody>
-        </table>
+        <SearchResults results={this.state.results} />
       </div>
     )
   }

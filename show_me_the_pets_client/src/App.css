@@ -51,3 +51,8 @@ th.th-type, th.th-gender {
 th {
   background-color: #ffd27f;
 }
+
+.select-pet {
+  cursor: pointer;
+  color: darkorange;
+}

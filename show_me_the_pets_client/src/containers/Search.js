@@ -39,21 +39,34 @@ export default class Search extends Component {
     this.props.fetchResults(queries)
   }
 
+  resetInputs = () => {
+    this.setState({
+      nameInput: "",
+      colorInput: "",
+      breedInput: "",
+      addressInput: "",
+      genderInput: ""
+    })
+  }
+
   render = () => {
     return (
-      <div id="search">
-        Enter one or more search terms to find a pet!<br/>
-        <input type="text" id="nameInput" placeholder="Name" onChange={this.handleInputChange} value={this.state.nameInput}/>
-        <input type="text" id="colorInput" placeholder="Color" onChange={this.handleInputChange} value={this.state.colorInput}/>
-        <input type="text" id="breedInput" placeholder="Breed" onChange={this.handleInputChange} value={this.state.breedInput} />
-        <select id="genderInput" onChange={this.handleInputChange}>
-         <option value="M">Male</option>
-         <option value="F">Female</option>
-         <option value="N">Neuter</option>
-         <option value="S">Spayed</option>
-        </select>
-        <input type="text" id="addressInput" placeholder="Address" onChange={this.handleInputChange} value={this.state.addressInput} />
-      </div>
+        <div id="search">
+          <h3>Enter one or more search terms to find a pet!</h3>
+          <input type="text" id="nameInput" placeholder="Name" onChange={this.handleInputChange} value={this.state.nameInput}/>
+          <input type="text" id="colorInput" placeholder="Color" onChange={this.handleInputChange} value={this.state.colorInput}/>
+          <input type="text" id="breedInput" placeholder="Breed" onChange={this.handleInputChange} value={this.state.breedInput} />
+          <select id="genderInput" onChange={this.handleInputChange}>
+           <option value="" selected disabled hidden>Gender</option>
+           <option value="M">Male</option>
+           <option value="F">Female</option>
+           <option value="N">Neuter</option>
+           <option value="S">Spayed</option>
+          </select>
+          <input type="text" id="addressInput" placeholder="Address" onChange={this.handleInputChange} value={this.state.addressInput} /><br/>
+          <div className="nav-link" onClick={this.resetInputs}>Reset Search</div>
+        </div>
+
     )
   }
 }

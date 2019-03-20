@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PetRow = ({ pet }) => {
+const Pet = ({ pet }) => {
   return(
     <tr>
       <td class="select-pet" onClick={() => this.showPet(pet.id)}>{pet.name}</td>
@@ -12,4 +12,4 @@ const PetRow = ({ pet }) => {
     </tr>
   )
 }
-export default PetRow
+export default Pet
