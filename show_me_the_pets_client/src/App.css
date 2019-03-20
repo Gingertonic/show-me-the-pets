@@ -1,18 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister|Underdog');
+
 .App {
   text-align: center;
+  font-size: 1em;
+  /* font-family: 'Underdog', cursive; */
+  font-family: 'Love Ya Like A Sister', cursive;
+  /* display: flex; */
 }
 
-
-
-.App-link {
-  color: #61dafb;
+table {
+  width: 90vw;
+  margin: 0 auto;
+  table-layout: fixed;
+  font-size: 1.5vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#navbar {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-link {
+  margin: 2vw;
+  cursor: pointer;
+}
+
+#search {
+  margin-bottom: 2vw;
+}
+
+input {
+  width: 35%;
+  border: 1px dashed grey;
+  margin: 1px;
+}
+
+th, td {
+  border-top: 1px dashed grey;
+  border-bottom: 1px dashed grey;
+}
+
+th.th-name, th.th-color, th.th-breed {
+  width: 15%;
+}
+
+th.th-type, th.th-gender {
+  width: 10%;
+}
+
+th {
+  background-color: #ffd27f;
 }

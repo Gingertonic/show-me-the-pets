@@ -30,10 +30,11 @@ export default class PetsBrowser extends Component {
 
   filterByMultiQuery = queries => {
     const results = this.state.pets.filter(p =>
-      p.name.match(new RegExp(queries.name, "i")) &&
+      p.name.match(new RegExp(`^${queries.name}`, "i")) &&
       p.color.match(new RegExp(queries.color, "i")) &&
       p.breed.match(new RegExp(queries.breed, "i")) &&
-      p.address.match(new RegExp(queries.address, "i"))
+      p.address.match(new RegExp(queries.address, "i")) &&
+      p.gender.match(new RegExp(queries.gender))
     )
     this.setState({ results })
   }
@@ -52,7 +53,16 @@ export default class PetsBrowser extends Component {
         <Nav fetchAnimalType={this.filterPetsByType}/>
         <Search pets={this.state.pets} fetchResults={this.filterByMultiQuery}/>
         <table>
-          <thead><tr><th>Name</th><th>Type</th><th>Color</th><th>Breed</th><th>Address</th></tr></thead>
+          <thead>
+            <tr>
+              <th className="th-name">Name</th>
+              <th className="th-type">Type</th>
+              <th className="th-color">Color</th>
+              <th className="th-breed">Breed</th>
+              <th className="th-gender">Gender</th>
+              <th className="th-address">Address</th>
+            </tr>
+          </thead>
           <tbody>{renderPets}</tbody>
         </table>
       </div>

@@ -5,7 +5,8 @@ export default class Search extends Component {
     nameInput: "",
     colorInput: "",
     breedInput: "",
-    addressInput: ""
+    addressInput: "",
+    genderInput: ""
   }
 
   // getSuggestions = value => {
@@ -17,10 +18,14 @@ export default class Search extends Component {
   //   );
   // };
 
-  handleInputChange = e => {
+  handleInputChange = async e => {
+    await this.updateState(e)
+    this.searchBy()
+  }
+
+  updateState = e => {
     const key = e.target.id
     this.setState({[key]: e.target.value})
-    this.searchBy()
   }
 
   searchBy = () => {
@@ -28,7 +33,8 @@ export default class Search extends Component {
       name: this.state.nameInput,
       color: this.state.colorInput,
       breed: this.state.breedInput,
-      address: this.state.addressInput
+      address: this.state.addressInput,
+      gender: this.state.genderInput
     }
     this.props.fetchResults(queries)
   }
@@ -37,11 +43,16 @@ export default class Search extends Component {
     return (
       <div id="search">
         Enter one or more search terms to find a pet!<br/>
-      <input type="text" id="nameInput" placeholder="Name" onChange={this.handleInputChange} value={this.state.nameInput}/>
+        <input type="text" id="nameInput" placeholder="Name" onChange={this.handleInputChange} value={this.state.nameInput}/>
         <input type="text" id="colorInput" placeholder="Color" onChange={this.handleInputChange} value={this.state.colorInput}/>
         <input type="text" id="breedInput" placeholder="Breed" onChange={this.handleInputChange} value={this.state.breedInput} />
+        <select id="genderInput" onChange={this.handleInputChange}>
+         <option value="M">Male</option>
+         <option value="F">Female</option>
+         <option value="N">Neuter</option>
+         <option value="S">Spayed</option>
+        </select>
         <input type="text" id="addressInput" placeholder="Address" onChange={this.handleInputChange} value={this.state.addressInput} />
-        <button onClick={this.searchBy}>Search</button>
       </div>
     )
   }
