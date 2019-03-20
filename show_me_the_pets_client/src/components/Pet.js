@@ -12,19 +12,24 @@ export default class Pet extends Component {
   }
 
   componentDidMount = () => {
-    this.getBreedCode(this.props.pet.breed.substring(0, 2))
+    this.getBreedCode()
   }
 
-  getBreedCode = breedSubString => {
-    fetch(`https://api.thecatapi.com/v1/breeds/search?q=${breedSubString}`, {
-      headers: {"x-api-key": "36ff3545-500e-4d64-bcf7-4003b02f18df"}
+  getBreedCode = () => {
+    const breedSubString = this.props.pet.breed.substring(0, 2)
+    const animal = this.props.pet.animal_type.toLowerCase()
+    const key = animal === 'dog' ? "829327e3-a467-4ed9-9002-383fe3df486c" : "36ff3545-500e-4d64-bcf7-4003b02f18df"
+    fetch(`https://api.the${animal}api.com/v1/breeds/search?q=${breedSubString}`, {
+      headers: {"x-api-key": key}
     })
       .then(resp => resp.json())
-      .then(breed => this.getImage(breed[0].id))
+      .then(breed => this.getImage(breed[0].id, animal, key))
   }
 
-  getImage = breedCode => {
-    fetch(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedCode}&limit=1&api_key=36ff3545-500e-4d64-bcf7-4003b02f18df`)
+  getImage = (breedCode, animal, key) => {
+    fetch(`https://api.the${animal}api.com/v1/images/search?breed_ids=${breedCode}&limit=1&api_key=36ff3545-500e-4d64-bcf7-4003b02f18df`, {
+      headers: {"x-api-key": key}
+    })
       .then(resp => resp.json())
       .then(results => this.setState({image: results[0].url}))
   }
