@@ -34,6 +34,7 @@ Pets can also be browsed by type (Cat, Dog, Rabbit or All)
 - The Cat API and the Dog API are great resources however I have not yet refined the breed selection. It currently takes a substring of the first 3 characters of the pet breed to find a breed, and subsequently an image. The returning images are not yet necessarily consistent with the breed!
 - Improve general styling (currently very lo-fi!)
 - Add features to be able to add new Pets to the database, (& update/delete).
+- Add tests to enable safer and quicker future improvements!
 
 ## Challenges Faced
 - Deciding how much I could use the backend API. I ended up using it only to retrieve all the pets once. I was originally planning to have multiple API calls to utilise ActiveRecord to make queries on that end however this was incompatible with my auto-complete results functionality. Given the very low usage of this API, it would make potentially make sense to rewrite it using a lighter-weight framework than Rails (such as Express (JavaScript) or Sinatra (Ruby))
