@@ -9,15 +9,6 @@ export default class Search extends Component {
     genderInput: ""
   }
 
-  // getSuggestions = value => {
-  //   const inputValue = value.trim().toLowerCase();
-  //   const inputLength = inputValue.length;
-  //
-  //   return inputLength === 0 ? [] : this.props.pets.filter(pet =>
-  //     pet.name.toLowerCase().slice(0, inputLength) === inputValue
-  //   );
-  // };
-
   handleInputChange = async e => {
     await this.updateState(e)
     this.searchBy()
@@ -60,7 +51,7 @@ export default class Search extends Component {
            <option value="" selected disabled hidden>Gender</option>
            <option value="M">Male</option>
            <option value="F">Female</option>
-           <option value="N">Neuter</option>
+           <option value="N">Neutered</option>
            <option value="S">Spayed</option>
           </select>
           <input type="text" id="addressInput" placeholder="Address" onChange={this.handleInputChange} value={this.state.addressInput} /><br/>

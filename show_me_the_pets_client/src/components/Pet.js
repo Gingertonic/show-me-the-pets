@@ -12,7 +12,11 @@ export default class Pet extends Component {
   }
 
   componentDidMount = () => {
-    this.getBreedCode()
+    this.props.pet.animal_type.match("Rabbit") ? this.fetchBunny() : this.getBreedCode()
+  }
+
+  fetchBunny = () => {
+    this.setState({image: "https://media.mnn.com/assets/images/2018/03/CuteBabyRabbitStaresOutWindow.jpg.838x0_q80.jpg"})
   }
 
   getBreedCode = () => {
@@ -27,7 +31,7 @@ export default class Pet extends Component {
   }
 
   getImage = (breedCode, animal, key) => {
-    fetch(`https://api.the${animal}api.com/v1/images/search?breed_ids=${breedCode}&limit=1&api_key=36ff3545-500e-4d64-bcf7-4003b02f18df`, {
+    fetch(`https://api.the${animal}api.com/v1/images/search?breed_ids=${breedCode}&limit=1`, {
       headers: {"x-api-key": key}
     })
       .then(resp => resp.json())

@@ -52,9 +52,13 @@ th {
   background-color: #ffd27f;
 }
 
-.select-pet {
+tr:hover {
+  background-color: rgba(0,0,0,0.1);
   cursor: pointer;
-  color: darkorange;
+}
+
+.select-pet {
+  font-weight: bold;
 }
 
 .pet-pic {

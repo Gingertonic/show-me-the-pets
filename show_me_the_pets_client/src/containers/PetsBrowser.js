@@ -26,7 +26,7 @@ export default class PetsBrowser extends Component {
 
   filterPetsByType = animalType => {
     const results = this.state.pets.filter(p => p.animal_type.match(new RegExp(animalType)))
-    this.setState({ results })
+    this.setState({ results, view: 'search' })
   }
 
   filterByMultiQuery = async queries => {
