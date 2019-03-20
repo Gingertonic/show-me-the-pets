@@ -6,8 +6,8 @@ const Nav = props => {
     <div id="navbar">
       <Link to={"Location"} switchView={props.switchView} text={"See all by Location"}/>
       <Link to={"Breed"} switchView={props.switchView} text={"See all by Breed"} />
-      <Link to={"Dogs"} switchView={props.switchView} action={props.fetchDogs} text={"See all Dogs"} />
-      <Link to={"Cats"} switchView={props.switchView} action={props.fetchCats} text={"See all Cats"} />
+      <div className="nav-link" onClick={() => props.fetchAnimalType('dogs')}>See all Dogs</div>
+      <div className="nav-link" onClick={() => props.fetchAnimalType('cats')}>See all Cats</div>
     </div>
   )
 }

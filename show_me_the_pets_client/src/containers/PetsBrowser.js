@@ -16,7 +16,7 @@ export default class PetsBrowser extends Component {
   }
 
   componentDidMount = () => {
-    this.fetchAnimalType('dogs')
+    // this.fetchAnimalType('dogs')
   }
 
 
@@ -45,7 +45,7 @@ export default class PetsBrowser extends Component {
     const renderPets = this.state.pets.map(pet => <PetRow pet={pet}/>)
     return (
       <div id="browser">
-        <Nav switchView={this.switchView} fetchDogs={this.fetchDogs} fetchCats={this.fetchDogs}/>
+        <Nav switchView={this.switchView} fetchAnimalType={this.fetchAnimalType}/>
         <Search switchView={this.switchView}/>
         {this.routeInnerView()}
         <table>

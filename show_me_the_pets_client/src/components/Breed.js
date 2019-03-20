@@ -2,7 +2,7 @@ import React from 'react'
 
 const Breed = props => {
   return(
-    <h1>"kjbakfg"</h1>
+    <h1>"Breed"</h1>
   )
 }
 
